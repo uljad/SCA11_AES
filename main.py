@@ -12,6 +12,9 @@ line =[]
 cypher=[]
 names=[]
 
+
+
+#
 '''
 Gettign the directory and loading the cypher
 
@@ -100,6 +103,12 @@ print(corrs.index(max(corrs))) #finding the max
 
 print(names[corrs.index(max(corrs))]) #finding from which file it is
 
-plt.plot(corrs)
+plt.plot(corrs, linewidth=5)
+
 plt.ylabel('correlation coeffs')
+plt.xlabel('index connecting file and power trace')
+plt.title('CPA Attack Output to find file with correct key')
 plt.show()
+
+print((corrs))
+
