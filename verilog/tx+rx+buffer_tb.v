@@ -38,8 +38,6 @@ module Top_tb();
     #5 clk <= !clk;
   end
 
-// nonsense comment
-
   initial begin
     $dumpfile("Top.vcd");
     $dumpvars(0, Top_tb);
