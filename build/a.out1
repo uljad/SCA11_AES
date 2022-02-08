@@ -1,8 +1,6 @@
-**** module/scope: Mux
+**** module/scope: tx_buff
      Flip-Flops   : 0
-     Logic Gates  : 64
-     MUX[2]: 32 slices
+     Logic Gates  : 0
 **** TOTALS
      Flip-Flops   : 0
-     Logic Gates  : 64
-     MUX[2]: 32 slices
+     Logic Gates  : 0
