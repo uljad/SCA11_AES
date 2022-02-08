@@ -42,10 +42,15 @@ module Top_tb();
     $dumpfile("Top.vcd");
     $dumpvars(0, Top_tb);
 
-    reset <= 1;
+    reset <= 1; // reset everything
     reset <= 0;
-    clk <= 0;
+    clk <= 0;   // start clock
 
+
+    // this test bench simply loads two 16 byte words into the transmit module
+    // the transmit module then sends them to the receive module and the receive
+    // module sends them to the buffer
+    
     din <= 8'h00;
     tx_start <= 1;
     #10;
