@@ -3,7 +3,7 @@ module UART_tx(
   input reset,              // reset
   input tx_start,           // signal to start transmission
   input s_tick,             // sample tick, frequency of baud rate
-  input [7:0] d_in,          // word to be transmitted
+  input [7:0] d_in,         // word to be transmitted
   output reg tx_done_flag,  // transmission done flag
   output reg tx             // serial data line
 );
@@ -65,13 +65,14 @@ module UART_tx(
     n_reg <= n_next;
     b_reg <= b_next;
     tx_reg <= tx_next;
+    tx_done_flag <= 0;
 
     if(state_reg == 0) begin    // idle state
        tx_next <= 1;            // ensure that line is held high when idle
        if(tx_start == 1) begin  // if the start flag is set (by the sender) transition to the start state
         state_next <= 1;        // change state to the start state
         s_next <= 0;            // reset counter
-        b_next <= d_in;          // load word into the b_next register to transmit
+        b_next <= d_in;         // load word into the b_next register to transmit
        end
     end
     if(state_reg == 1) begin    // start state
