@@ -1,5 +1,6 @@
 import numpy as np
 
+# Statistical Functions to be used in the CPA
 def mean(X):
     return np.mean(X,axis=0)
 
