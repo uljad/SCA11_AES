@@ -3,7 +3,7 @@ from statsTools import mean,std_dev,cov
 from aes_sim import aes_internal, sbox
 from powerModel import HW, calc_hamming_weight
 
-def simple_guess(trace_array)
+def simple_guess(trace_array,textin_array):
 
     maxcpa = [0] * 256 #all zeros to start with
     #Using Python broadcasting

@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from attack import guess_key
+from attack import simple_guess
 
 if __name__ == "__main__":
 
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     '''
     Attack Code ============================================================
     '''
-
+    bestguess=simple_guess(trace_array,textin_array)
 
     '''
     Printing the Key ============================================================
