@@ -20,9 +20,9 @@ def getCipher_dir(dir="Simulations/ct"):
         for k in cypher:
             for j in k:
                 temp=j.strip()
-                j=temp
+                temp2="0x"+temp
+                j=int(temp2,16)
                 
-
     return cypher
 
 
@@ -45,7 +45,8 @@ def getPower_dir(dir_="Simulations/power"):
         for k in power:
             for j in k:
                 temp=j.strip()
-                j=temp
+                temp2=float(temp)
+                j=temp2
 
     return power
 
