@@ -1,12 +1,12 @@
 import os
 
-def getCipher_dir(directory="Simulations/ct"):
+def getCipher_dir(dir="Simulations/ct"):
 
     line =[]
     cypher=[]
     names=[]
 
-    directory = os.fsencode()
+    directory = os.fsencode(dir)
 
     for file in os.listdir(directory):
 
@@ -21,11 +21,11 @@ def getCipher_dir(directory="Simulations/ct"):
     return cypher
 
 
-def getPower_dir(directory="Simulations/power")
+def getPower_dir(dir_="Simulations/power"):
     power_file=[]
     power=[]
 
-    directory = os.fsencode("C:/Users/ub352/Desktop/Spring2021/Capstone/Attack_CPA/power")
+    directory = os.fsencode(dir_)
 
     for file in os.listdir(directory):
 
@@ -38,5 +38,3 @@ def getPower_dir(directory="Simulations/power")
             continue
     
     return power
-
-    

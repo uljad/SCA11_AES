@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from attack import simple_guess
+from handler import getCipher_dir,getPower_dir
 
 if __name__ == "__main__":
 
@@ -14,25 +15,32 @@ if __name__ == "__main__":
     trace_array = aes_traces_50_tracedata
     textin_array = aes_traces_50_textindata
 
-    '''
-    Plot Traces=============================================================================================
-    '''
-    plt.rcParams['figure.figsize'] = [10, 10]
-    plt.plot(trace_array[0],'r--')
-    plt.ylabel("Value")
-    plt.title("Trace_Array")
-    plt.savefig("CPA_output/traces.png",dpi=300)
+    power=getCipher_dir()
+    cipher=getPower_dir()
 
-    '''
-    Attack Code ============================================================================================
-    '''
-    bestguess=simple_guess(trace_array,textin_array)
+    print(cipher)
+    print("--00 \n")
+    print(power)
 
-    '''
-    Printing the Key ======================================================================================
-    '''
-    #Printing the Key       
-    temp=[hex(k).split('x')[-1] for k in bestguess]
-    final_key="0x"+''.join(temp)
-    print("The Key is  ",final_key)
+    # '''
+    # Plot Traces=============================================================================================
+    # '''
+    # plt.rcParams['figure.figsize'] = [10, 10]
+    # plt.plot(trace_array[0],'r--')
+    # plt.ylabel("Value")
+    # plt.title("Trace_Array")
+    # plt.savefig("CPA_output/traces.png",dpi=300)
+
+    # '''
+    # Attack Code ============================================================================================
+    # '''
+    # bestguess=simple_guess(trace_array,textin_array)
+
+    # '''
+    # Printing the Key ======================================================================================
+    # '''
+    # #Printing the Key       
+    # temp=[hex(k).split('x')[-1] for k in bestguess]
+    # final_key="0x"+''.join(temp)
+    # print("The Key is  ",final_key)
 
