@@ -18,10 +18,12 @@ if __name__ == "__main__":
     cipher=getCipher_dir()
     power=getPower_dir()
 
-    print(cipher)
+    print(cipher, end = '')
     print("--00 \n")
     print((power))
     print(type(cipher[0][0]))
+
+    
 
     # '''
     # Plot Traces=============================================================================================
