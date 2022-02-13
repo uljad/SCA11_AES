@@ -8,8 +8,8 @@ if __name__ == "__main__":
     '''
     Import Traces==========================================================================================
     '''
-    aes_traces_50_tracedata = np.load(r"traces/lab4_2_traces.npy")
-    aes_traces_50_textindata = np.load(r"traces/lab4_2_textin.npy")
+    aes_traces_50_tracedata = np.load(r"JupyterNotebooks/traces/lab4_2_traces.npy")
+    aes_traces_50_textindata = np.load(r"JupyterNotebooks/traces/lab4_2_textin.npy")
     key = np.load(r"traces/lab4_2_key.npy")
 
     trace_array = aes_traces_50_tracedata

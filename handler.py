@@ -16,7 +16,11 @@ def getCipher_dir(dir="Simulations/ct"):
             names.append(filename)
             line=(f.readlines()) #loading cypher
             cypher.append(line)
-        continue
+        
+        for k in cypher:
+            for j in k:
+                j=j.strip()
+                
 
     return cypher
 
@@ -35,15 +39,20 @@ def getPower_dir(dir_="Simulations/power"):
             with open("C:/Users/ub352/Desktop/Spring2021/Capstone/Attack_CPA/power/"+filename,'r') as f:
                 power_file=(f.readlines()) #loading power
                 power.append(power_file)
-            continue
-    
+            
+            
+        for k in power:
+            for j in k:
+                j=j.strip()
+                j=float(j)
+
     return power
 
-def getKeys_dir(dir_="Simulations/power/round10_key.txt"):
+# def getKeys_dir(dir_="Simulations/power/round10_key.txt"):
 
-        # with open("C:/Users/ub352/Desktop/Spring2021/Capstone/Attack_CPA/power/"+filename,'r') as f:
-        #     power_file=(f.readlines()) #loading power
-        #     power.append(power_file)
-        # continue
-    keys=[]
-    return keys
+#         # with open("C:/Users/ub352/Desktop/Spring2021/Capstone/Attack_CPA/power/"+filename,'r') as f:
+#         #     power_file=(f.readlines()) #loading power
+#         #     power.append(power_file)
+#         # continue
+#     keys=[]
+#     return keys

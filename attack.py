@@ -41,7 +41,9 @@ def simple_guess(trace_array,textin_array):
 def simple_guess_sim(trace_array,textin_array,key_guess):
 
     guess_count=len(key_guess)
+    guess_count=256
     maxcpa = [0] * guess_count #all zeros to start with
+    
     #Using Python broadcasting
     t_bar = mean(trace_array) 
     o_t = std_dev(trace_array, t_bar)
