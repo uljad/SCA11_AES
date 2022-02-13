@@ -38,3 +38,12 @@ def getPower_dir(dir_="Simulations/power"):
             continue
     
     return power
+
+def getKeys_dir(dir_="Simulations/power/round10_key.txt"):
+
+        # with open("C:/Users/ub352/Desktop/Spring2021/Capstone/Attack_CPA/power/"+filename,'r') as f:
+        #     power_file=(f.readlines()) #loading power
+        #     power.append(power_file)
+        # continue
+    keys=[]
+    return keys

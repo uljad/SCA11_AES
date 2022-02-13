@@ -15,12 +15,13 @@ if __name__ == "__main__":
     trace_array = aes_traces_50_tracedata
     textin_array = aes_traces_50_textindata
 
-    power=getCipher_dir()
-    cipher=getPower_dir()
+    cipher=getCipher_dir()
+    power=getPower_dir()
 
     print(cipher)
     print("--00 \n")
-    print(power)
+    print((power))
+    print(type(cipher[0][0]))
 
     # '''
     # Plot Traces=============================================================================================
