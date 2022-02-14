@@ -27,7 +27,7 @@ if __name__ == "__main__":
     '''
     Plot Traces=============================================================================================
     '''
-    plt.rcParams['figure.figsize'] = [10, 10]
+    plt.rcParams['figure.figsize'] = [40, 15]
     plt.plot(power[0],'g-')
     plt.ylabel("Value")
     plt.title("Trace_Array")
