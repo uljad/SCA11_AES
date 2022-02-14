@@ -74,3 +74,9 @@ def simple_guess_sim(trace_array,textin_array,key_guess):
             bestguess[bnum]= guess
     
     return bestguess
+
+def guess_no_pt(trace_array,cipher):
+
+    bestguess=[0]*16
+
+    return bestguess

@@ -24,14 +24,14 @@ if __name__ == "__main__":
     print(type(cipher[0][0]))
 
     
-    # '''
-    # Plot Traces=============================================================================================
-    # '''
-    # plt.rcParams['figure.figsize'] = [10, 10]
-    # plt.plot(trace_array[0],'r--')
-    # plt.ylabel("Value")
-    # plt.title("Trace_Array")
-    # plt.savefig("CPA_output/traces.png",dpi=300)
+    '''
+    Plot Traces=============================================================================================
+    '''
+    plt.rcParams['figure.figsize'] = [10, 10]
+    plt.plot(power[0],'g-')
+    plt.ylabel("Value")
+    plt.title("Trace_Array")
+    plt.savefig("CPA_output/traces.png",dpi=300)
 
     # '''
     # Attack Code ============================================================================================
