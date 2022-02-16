@@ -17,13 +17,17 @@ def getCipher_dir(dir="Simulations/ct"):
             line=(f.readlines()) #loading cypher
             cypher.append(line)
         
-        for k in cypher:
-            for j in k:
-                temp=j.strip()
-                temp2="0x"+temp
-                j=int(temp2,16)
+    cypher_floats=[]
+    for k in cypher:
+        container=[]
+        for j in k:
+            temp=j.strip()
+            temp2="0x"+temp
+            temp3=int(temp2,16)
+            container.append(temp3)
+        cypher_floats.append(container)
                 
-    return cypher
+    return cypher_floats
 
 
 def getPower_dir(dir_="Simulations/power"):
@@ -40,13 +44,15 @@ def getPower_dir(dir_="Simulations/power"):
             with open("C:/Users/ub352/Desktop/Spring2021/Capstone/Attack_CPA/power/"+filename,'r') as f:
                 power_file=(f.readlines()) #loading power
                 power.append(power_file)
-            
-            
-        for k in power:
-            for j in k:
-                temp=j.strip()
-                temp2=float(temp)
-                j=temp2
+    
+    power_floats=[]
+    for k in power:
+        container=[]
+        for j in k:
+            temp=j.strip()
+            temp2=float(temp)
+            container.append(temp2)
+        power_floats.append(container)
 
-    return power
+    return power_floats
 

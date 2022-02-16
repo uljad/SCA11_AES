@@ -77,6 +77,37 @@ def simple_guess_sim(trace_array,textin_array,key_guess):
 
 def guess_no_pt(trace_array,cipher):
 
-    bestguess=[0]*16
+    guess_count=256
+    maxcpa = [0] * guess_count #all zeros to start with
+    
+    #Using Python broadcasting
+    t_bar = mean(trace_array) 
+    o_t = std_dev(trace_array, t_bar)
+    print(len(t_bar))
 
+    t_bar = np.sum(trace_array, axis=0)/len(trace_array)
+    o_t = np.sqrt(np.sum((trace_array - t_bar)**2, axis=0))
+
+    bestguess = [0] * 16 #put your key byte guesses here
+    cipher_quant=len(cipher[0])
+
+    for bnum in range(0, cipher_quant):
+        maxcpa = [0] * guess_count
+        for kguess in range(0, guess_count):
+            
+            #Repeating the key byte guessing process from the last loop
+            hws = np.array([[calc_hamming_weight(cipher[bnum])]]).transpose()
+
+            hws_bar=mean(hws)
+            o_hws=std_dev(hws,hws_bar)
+            cpaoutput = (cov(hws,hws_bar,trace_array,t_bar))/(o_t*o_hws)
+            maxcpa[kguess] = cpaoutput
+            
+            #Get the highes correlation
+            correlations=[np.max(np.abs(k)) for k in maxcpa]
+            guess=np.argmax(correlations)
+
+            #store the bytes
+            bestguess[bnum]= guess
+    
     return bestguess

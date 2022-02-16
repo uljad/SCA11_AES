@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from attack import simple_guess
+from attack import guess_no_pt, simple_guess
 from handler import getCipher_dir,getPower_dir
 
 if __name__ == "__main__":
@@ -19,11 +19,13 @@ if __name__ == "__main__":
     power=getPower_dir()
 
     print(cipher[0][0], end = '')
-    print("--00 \n")
+    print("---------------\n")
     print((power[0][0]))
+    print(type(power[0][0]))
     print(type(cipher[0][0]))
 
-    
+
+
     '''
     Plot Traces=============================================================================================
     '''
@@ -33,16 +35,24 @@ if __name__ == "__main__":
     plt.title("Trace_Array")
     plt.savefig("CPA_output/traces.png",dpi=300)
 
-    # '''
-    # Attack Code ============================================================================================
-    # '''
-    # bestguess=simple_guess(trace_array,textin_array)
+    '''
+    Attack Code ============================================================================================
+    '''
+    bestguess=simple_guess(trace_array,textin_array)
+    guess_sim=guess_no_pt(power,cipher)
 
-    # '''
-    # Printing the Key ======================================================================================
-    # '''
-    # #Printing the Key       
-    # temp=[hex(k).split('x')[-1] for k in bestguess]
-    # final_key="0x"+''.join(temp)
-    # print("The Key is  ",final_key)
+
+    '''
+    Printing the Key ======================================================================================
+    '''
+    #Printing the Key       
+    temp=[hex(k).split('x')[-1] for k in bestguess]
+    final_key="0x"+''.join(temp)
+    print("The Key is  ",final_key)
+
+    final_key=""
+
+    temp=[hex(k).split('x')[-1] for k in guess_sim]
+    final_key="0x"+''.join(temp)
+    print("The Key from simulation is  ",final_key)
 
