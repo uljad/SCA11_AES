@@ -6,7 +6,6 @@ module tx_shift(
   input buffer_empty,
   output reg buffer_read,
   output reg [7:0] dout,
-  output reg shift_done,
   output reg tx_start
 );
 
@@ -30,7 +29,6 @@ always @(reset) begin
   ctr_next <= 0;
 
   dout <= 0;
-  shift_done <= 0;
 
   tx_start <= 0;
   buffer_read <= 0;
@@ -40,7 +38,6 @@ always @(posedge clk) begin
   state <= state_next;
   data <= data_next;
   ctr <= ctr_next;
-  shift_done <= 0;
   tx_start <= 0;
   buffer_read <= 0;
 
@@ -67,7 +64,6 @@ always @(posedge clk) begin
   if (state == 3) begin // shift state
     if(ctr == 15) begin
       state_next <= 0;
-      shift_done <= 1;
     end else begin
       if(tx_done) begin
         data_next <= data << 8;

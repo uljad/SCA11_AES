@@ -1,4 +1,4 @@
-module buffer(
+module fifo(
   input clk,                // System clock
   input reset,              // Asynchronous reset
   input [127:0] din,        // Input data from rx_shift
