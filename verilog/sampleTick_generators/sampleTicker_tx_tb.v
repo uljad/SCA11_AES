@@ -1,12 +1,12 @@
 `timescale 1ns / 1ns
-`include "clockDivider.v"
+`include "sampleTick_generator_tx.v"
 
 module Top_tb();
   reg clk;
   reg reset;
-  wire baud;
+  wire s_tick;
 
-  clockDiv divider(clk, reset, baud);
+  sample_ticker_tx sampler(clk, reset, s_tick);
 
   always @* begin
     #5 clk <= !clk;
@@ -20,7 +20,7 @@ module Top_tb();
     clk <= 0;
 
     #1000;
-    
+
     $finish;
   end
 endmodule
