@@ -4,7 +4,7 @@ module sample_ticker_rx(
   output reg s_tick
 );
 
-reg [7:0] counter;
+reg [5:0] counter;
 
 
 always @(posedge reset) begin
@@ -14,7 +14,7 @@ end
 
 always @(posedge clk) begin
   counter <= counter + 1;
-  if(counter == 1) begin // the number in the counter should be set to a particular value
+  if(counter == 54) begin // the number in the counter should be set to a particular value
     s_tick <= !s_tick;
     counter <= 0;
   end
@@ -23,7 +23,7 @@ end
 endmodule
 
 // As per the design in the book "FPGA Prototyping", the receiver should receive
-// sampling ticks that are 16x the s_tick rate, so if the s_tick rate is 9600, the
+// sampling ticks that are 16x the baud rate, so if the s_tick rate is 9600, the
 // receiver should receive sampling ticks at a rate of 153600 or (9600 * 16)
 // ticks per second.
 
