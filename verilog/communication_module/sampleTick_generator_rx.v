@@ -7,7 +7,7 @@ module sample_ticker_rx(
 reg [5:0] counter;
 
 
-always @(posedge reset) begin
+always @(negedge reset) begin
   counter <= 0;
   s_tick <= 0;
 end

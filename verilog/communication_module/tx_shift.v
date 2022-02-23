@@ -18,7 +18,7 @@ reg [127:0] data_next;
 reg [3:0] ctr;
 reg [3:0] ctr_next;
 
-always @(reset) begin
+always @(negedge reset) begin
   state <= 0;
   state_next <= 0;
 

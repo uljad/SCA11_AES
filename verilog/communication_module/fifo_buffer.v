@@ -28,7 +28,7 @@ reg [2:0] read_index;
 reg [2:0] read_index_next;
 
 // at asynchronous reset, set everything to zero
-  always @(reset) begin
+  always @(negedge reset) begin
     state <= 0;
     state_next <= 0;
 

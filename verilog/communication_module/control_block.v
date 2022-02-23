@@ -23,7 +23,7 @@ module control_block(
   reg [1:0] state;
   reg [1:0] state_next;
 
-  always @(reset) begin
+  always @(negedge reset) begin
     rx_read <= 0;
 
     tx_write <= 0;

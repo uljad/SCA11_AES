@@ -35,7 +35,7 @@ module UART_rx(
 // with the state_reg being a number from 0 to 3 which denotes the states: idle, start, data, and stop
 
 // at asynchronous reset, set everything to zero
-  always @(reset) begin
+  always @(negedge reset) begin
     state_reg <= 0;
     state_next <= 0;
 
