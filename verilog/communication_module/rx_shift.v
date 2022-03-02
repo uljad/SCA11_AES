@@ -1,9 +1,9 @@
 module rx_shift(
   input clk,                // system clock
   input reset,              // Asynchronous reset
-  input [7:0] din,          // 8 bits from UART reciever
+  input [7:0] d_in,          // 8 bits from UART reciever
   input rx_done,            // from UART reciever, used as shift in the 8 incident bits
-  output reg [127:0] dout,  // output block, goes to rx_buffer
+  output reg [127:0] d_out,  // output block, goes to rx_buffer
   output reg shift_done     // used as a write_en signal to rx_buffer
 );
 
@@ -26,7 +26,7 @@ always @(negedge reset) begin
   ctr <= 0;
   ctr_next <= 0;
 
-  dout <= 0;
+  d_out <= 0;
   shift_done <= 0;
 end
 
@@ -40,7 +40,7 @@ always @(posedge clk) begin
     if(rx_done) begin   // waits on rx_done signal
       state_next <= 1;
       ctr_next <= 0;
-      data_next <= din; // loads byte into register and goes to next state
+      data_next <= d_in; // loads byte into register and goes to next state
     end
   end
 
@@ -49,7 +49,7 @@ always @(posedge clk) begin
       state_next <= 2;
     end else begin
       if(rx_done) begin
-        data_next <= data << 8 | din; // shifts bytes and appends new one
+        data_next <= data << 8 | d_in; // shifts bytes and appends new one
         ctr_next <= ctr + 1;          // increments counter
       end
     end
@@ -60,6 +60,6 @@ always @(posedge clk) begin
     state_next <= 0;                // FSM returns to idle state
   end
 
-  dout <= data;
+  d_out <= data;
 end
 endmodule

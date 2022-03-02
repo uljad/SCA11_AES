@@ -1,11 +1,11 @@
 module tx_shift(
   input clk,
   input reset,
-  input [127:0] din,
+  input [127:0] d_in,
   input tx_done,
   input buffer_empty,
   output reg buffer_read,
-  output reg [7:0] dout,
+  output reg [7:0] d_out,
   output reg tx_start
 );
 
@@ -28,7 +28,7 @@ always @(negedge reset) begin
   ctr <= 0;
   ctr_next <= 0;
 
-  dout <= 0;
+  d_out <= 0;
 
   tx_start <= 0;
   buffer_read <= 0;
@@ -49,7 +49,7 @@ always @(posedge clk) begin
   end
 
   if(state == 1) begin  // loading state
-    data_next <= din;
+    data_next <= d_in;
     state_next <= 2;
   end
 
@@ -72,6 +72,6 @@ always @(posedge clk) begin
     end
   end
 
-  dout <= data[127:120];
+  d_out <= data[127:120];
 end
 endmodule
