@@ -21,3 +21,5 @@ sbox = [
 def aes_internal(inputdata, key):
     XOR_res= inputdata ^ key
     return(sbox[XOR_res])
+
+
