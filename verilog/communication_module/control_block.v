@@ -51,10 +51,10 @@ module control_block(
     end
 
     if(state == 1) begin  // loading state
-      // if(aes_ready) begin
+      if(aes_ready) begin
         aes_start <= 1;
         state_next <= 2;
-      // end
+      end
     end
 
     if(state == 2) begin  // wait for encryption to be done state
