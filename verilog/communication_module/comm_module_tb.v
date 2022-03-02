@@ -7,7 +7,8 @@ module Top_tb();
   reg [7:0] din_temp;
   reg tx_start_temp;
 
-  UART_transmitter temp(clk, reset, tx_start_temp, din_temp, tx_done_temp, serial);
+  sample_ticker temp_ticker(clk, reset, s_tick);
+  UART_tx temp(clk, reset, tx_start_temp, din_temp, s_tick, tx_done_temp, serial);
 
   reg aes_ready;
   reg [127:0] ct_from_aes;
