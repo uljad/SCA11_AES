@@ -2,8 +2,8 @@ module UART_tx(
   input clk,                // system clock
   input reset,              // reset
   input tx_start,           // signal to start transmission
-  input s_tick,             // sample tick, frequency of baud rate
   input [7:0] d_in,         // word to be transmitted
+  input s_tick,             // sample tick, frequency of baud rate
   output reg tx_done_flag,  // transmission done flag
   output reg tx             // serial data line
 );
