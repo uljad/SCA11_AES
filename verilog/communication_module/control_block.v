@@ -23,51 +23,52 @@ module control_block(
   reg [1:0] state;
   reg [1:0] state_next;
 
-  always @(negedge reset) begin
-    rx_read <= 0;
-
-    tx_write <= 0;
-    ct <= 0;
-
-    aes_start <= 0;
-    pt_to_aes <= 0;
-
-    state <= 0;
-    state_next <= 0;
-  end
-
   always @(posedge clk) begin
-    state <= state_next;
-    aes_start <= 0;
-    tx_write <= 0;
-    rx_read <= 0;
+    if(!reset) begin
+      rx_read <= 0;
 
-    if(state == 0) begin  // idle state
-      if(!rx_empty) begin
-        pt_to_aes <= pt;
-        rx_read <= 1;
-        state_next <= 1;
-      end
+      tx_write <= 0;
+      ct <= 0;
+
+      aes_start <= 0;
+      pt_to_aes <= 0;
+
+      state <= 0;
+      state_next <= 0;
     end
+    else begin
+      state <= state_next;
+      aes_start <= 0;
+      tx_write <= 0;
+      rx_read <= 0;
 
-    if(state == 1) begin  // loading state
-      if(aes_ready) begin
-        aes_start <= 1;
-        state_next <= 2;
+      if(state == 0) begin  // idle state
+        if(!rx_empty) begin
+          pt_to_aes <= pt;
+          rx_read <= 1;
+          state_next <= 1;
+        end
       end
-    end
 
-    if(state == 2) begin  // wait for encryption to be done state
-      if(aes_ready) begin
-        ct <= ct_from_aes;
-        state_next <= 3;
+      if(state == 1) begin  // loading state
+        if(aes_ready) begin
+          aes_start <= 1;
+          state_next <= 2;
+        end
       end
-    end
 
-    if(state == 3) begin  // send data to tx_buffer and go back to idle state...state
-      if(!tx_overflow) begin
-        tx_write <= 1;
-        state_next <= 0;
+      if(state == 2) begin  // wait for encryption to be done state
+        if(aes_ready) begin
+          ct <= ct_from_aes;
+          state_next <= 3;
+        end
+      end
+
+      if(state == 3) begin  // send data to tx_buffer and go back to idle state...state
+        if(!tx_overflow) begin
+          tx_write <= 1;
+          state_next <= 0;
+        end
       end
     end
   end
