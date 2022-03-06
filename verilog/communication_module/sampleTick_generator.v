@@ -6,20 +6,20 @@ module sample_ticker(
 
 reg [5:0] counter;
 
-
-always @(negedge reset) begin
-  counter <= 0;
-  s_tick <= 0;
-end
-
 always @(posedge clk) begin
-  counter <= counter + 1;
-  if(counter == 54) begin // the number in the counter should be set to a particular value
-    s_tick <= !s_tick;
+  if(!reset) begin
     counter <= 0;
+    s_tick <= 0;
+  end
+  else begin
+    counter <= counter + 1;
+    s_tick <= 0;
+    if(counter == 54) begin // the number in the counter should be set to a particular value
+      s_tick <= 1;
+      counter <= 0;
+    end
   end
 end
-
 endmodule
 
 // As per the design in the book "FPGA Prototyping", the receiver should receive
