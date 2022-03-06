@@ -8,7 +8,15 @@ module Top_tb();
   reg tx_start_temp;
 
   sample_ticker temp_ticker(clk, reset, s_tick);
-  UART_tx temp(clk, reset, tx_start_temp, din_temp, s_tick, tx_done_temp, serial);
+  UART_tx temp(
+    .clk(clk),
+    .reset(reset),
+    .tx_start(tx_start_temp),
+    .d_in(din_temp),
+    .s_tick(s_tick),
+    .tx_done_flag(tx_done_temp),
+    .tx(serial)
+    );
 
   reg aes_ready;
   reg [127:0] ct_from_aes;
@@ -25,105 +33,106 @@ module Top_tb();
     $dumpfile("Top.vcd");
     $dumpvars(0, Top_tb);
 
-    reset <= 1;
-    reset <= 0;
     clk <= 0;
+    reset <= 0;
+    #10;
+    reset <= 1;
 
     din_temp <= 8'h00;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'h11;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'h22;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'h33;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'h44;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'h55;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'h66;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'h77;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'h88;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'h99;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'hAA;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'hBB;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'hCC;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'hDD;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'hEE;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     din_temp <= 8'hFF;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
-    #10000;
+    #100000;
 
     aes_ready <= 1;
     ct_from_aes <= 128'hdeadbeefdeadbeefdeadbeefdeadbeef;
