@@ -83,7 +83,7 @@ module UART_rx(
           if(s_reg == 15) begin                 // oversampling scheme requires sampling in the middle of the wave, this is ensured by counting 16 ticks
                                                 // this ensures we sample the middle of the wave, the middle of one wave is 16 bits from the middle of the
                                                 // next wave
-            b_next <= rx | b_reg[7:0] << 1;     // shift in b_next bit
+            b_next <= {rx, b_reg[7:1]};         // shift in b_next bit
             s_next <= 0;                        // reset tick counter
             if(n_reg == 7) begin                // once entire message is received switch to stop state
               state_next <= 3;

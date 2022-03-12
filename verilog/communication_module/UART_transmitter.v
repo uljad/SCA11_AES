@@ -88,11 +88,11 @@ module UART_tx(
         end
       end
       if(state_reg == 2) begin          // data state
-        tx_next <= b_reg[7];            // transmit MSB by setting it to the tx line
+        tx_next <= b_reg[0];            // transmit MSB by setting it to the tx line
         if(s_tick == 1) begin           // only operate when the s_tick (from baud generator) is set
           if(s_reg == 15) begin         // once 16 ticks have passed, the next bit can be shifted out to the tx line
             s_next <= 0;                // reset conuter
-            b_next <= b_reg[7:0] << 1;  // shift bits in the b_reg
+            b_next <= b_reg[7:0] >> 1;  // shift bits in the b_reg
 
             if(n_reg == 7) begin        // when all 8 bits have been shifted;
               state_next <= 3;          // go to stop state
