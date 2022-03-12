@@ -14,10 +14,10 @@ reg [1:0] state;
 reg [1:0] state_next;
 
 // buffer and associated data_next block
-reg [127:0] buff [6:0];
+reg [127:0] buff [7:0];
 
 // hasData flags to see if buffer locations are filled
-reg hasData [6:0];
+reg hasData [7:0];
 
 // buffer index for loading data
 reg [2:0] load_index;
@@ -45,6 +45,7 @@ reg [2:0] read_index_next;
       hasData[4] <= 0;
       hasData[5] <= 0;
       hasData[6] <= 0;
+      hasData[7] <= 0;
 
       buff[0] <= 0;
       buff[1] <= 0;
@@ -53,6 +54,7 @@ reg [2:0] read_index_next;
       buff[4] <= 0;
       buff[5] <= 0;
       buff[6] <= 0;
+      buff[7] <= 0;
     end
     else begin
       state <= state_next;
