@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from attack import guess_no_pt, simple_guess
 from handler import getCipher_dir,getPower_dir
-
+from aes_sim import inv_shift_rows
 if __name__ == "__main__":
 
     '''
