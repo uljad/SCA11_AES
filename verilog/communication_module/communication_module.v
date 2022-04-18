@@ -5,6 +5,7 @@
 `include "UART_transmitter.v"
 `include "sampleTick_generator.v"
 `include "control_block.v"
+`include "key_switch.v"
 
 module comm(
   // board side
@@ -19,7 +20,11 @@ module comm(
   input aes_ready,          // shows us when aes module is idle OR done with previous encryption operation
   output aes_start,         // trigger to start encryption
   output [127:0] pt_to_aes, // plaintext sent to aes
-  input [127:0] ct_from_aes // cipher text we get back from aes
+  input [127:0] ct_from_aes,// cipher text we get back from aes
+
+  // key select outputs
+  output [127:0] newKey,
+  output key_write_en
 );
 
   sample_ticker s_tick_generator(
@@ -39,15 +44,31 @@ module comm(
     .rx_done_flag(rx_done)
   );
 
-  wire [127:0] rx_shiftReg_to_buffer;
+  wire [127:0] rx_shiftReg_to_keySwitch;
 
   rx_shift rx_shifter(
     .clk(clk),
     .reset(reset),
     .d_in(rx_to_shiftReg),
     .rx_done(rx_done),
-    .d_out(rx_shiftReg_to_buffer),
-    .shift_done(rx_write_en)
+    .d_out(rx_shiftReg_to_keySwitch),
+    .shift_done(keySelect_write_en)
+  );
+
+  wire [127:0] keySelect_to_buffer;
+
+  keySelect select(
+    .clk(clk),
+    .reset(reset),
+
+    .block(rx_shiftReg_to_keySwitch),
+    .write_en(keySelect_write_en),
+
+    .pt_block(keySelect_to_buffer),
+    .pt_write(rx_write_en),
+
+    .key_block(newKey),
+    .key_write(key_write_en)
   );
 
   wire [127:0] rxBuffer_to_CB;
@@ -55,7 +76,7 @@ module comm(
   fifo rx_buffer(
     .clk(clk),
     .reset(reset),
-    .d_in(rx_shiftReg_to_buffer),
+    .d_in(keySelect_to_buffer),
     .write_en(rx_write_en),
     .read_en(rx_read_en),
     .d_out(rxBuffer_to_CB),
