@@ -16,14 +16,17 @@ module Top_tb();
     .s_tick(s_tick),
     .tx_done_flag(tx_done_temp),
     .tx(serial)
-    );
+  );
 
   reg aes_ready;
   reg [127:0] ct_from_aes;
 
   wire [127:0] pt_to_aes;
 
-  comm final(clk, reset, serial, tx, aes_ready, aes_start, pt_to_aes, ct_from_aes);
+  wire [127:0] newKey;
+  wire key_write_en;
+
+  comm final(clk, reset, serial, tx, aes_ready, aes_start, pt_to_aes, ct_from_aes, newKey, key_write_en);
 
   always @* begin
     #5 clk <= !clk;
@@ -38,107 +41,304 @@ module Top_tb();
     #10;
     reset <= 1;
 
-    din_temp <= 8'h00;
+    din_temp <= 8'hDE;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'h11;
+    din_temp <= 8'hAD;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'h22;
+    din_temp <= 8'hBE;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'h33;
+    din_temp <= 8'hEF;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'h44;
+    din_temp <= 8'hDE;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'h55;
+    din_temp <= 8'hAD;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'h66;
+    din_temp <= 8'hBE;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'h77;
+    din_temp <= 8'hEF;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'h88;
+    din_temp <= 8'hDE;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'h99;
+    din_temp <= 8'hAD;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'hAA;
+    din_temp <= 8'hBE;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'hBB;
+    din_temp <= 8'hEF;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'hCC;
+    din_temp <= 8'hDE;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'hDD;
+    din_temp <= 8'hAD;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'hEE;
+    din_temp <= 8'hBE;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    din_temp <= 8'hFF;
+    din_temp <= 8'hEF;
     tx_start_temp <= 1;
     #10;
     tx_start_temp <= 0;
     #100000;
 
-    aes_ready <= 1;
-    ct_from_aes <= 128'hdeadbeefdeadbeefdeadbeefdeadbeef;
+////////////////////
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+////////////////
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'hFF;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+din_temp <= 8'h00;
+tx_start_temp <= 1;
+#10;
+tx_start_temp <= 0;
+#100000;
+
+aes_ready <= 1;
+ct_from_aes <= 128'hdeadbeefdeadbeefdeadbeefdeadbeef;
+
+
 
     #1000000;
-
     $finish;
   end
 
