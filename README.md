@@ -10,6 +10,6 @@ _However_, we strongly recommend going through the Jupyter Notebooks folder to g
 [AES Implementation](https://github.com/boppreh/aes/blob/master/aes.py) used to develop the inverse lookups
 
 [Supplementary material](https://github.com/JimohYusuf/Capstone_SCA) by Yusuf Jimoh Omotayo
-[LaTeX Report](https://www.overleaf.com/read/yxrgccvfvdbd) if anything, a good review of LaTeX use
+[LaTeX Report](https://www.overleaf.com/read/yxrgccvfvdbd) if anything, a good review of using LaTeX
 
 
