@@ -8,6 +8,8 @@ This is the repository with the Code for the 2021-2022 Capstone Project of Uljad
 _However_, we strongly recommend going through the Jupyter Notebooks folder to get a better understanding of Correlation Power Analysis and data handling approaches as well as through the Verilog folder. 
 
 [AES Implementation](https://github.com/boppreh/aes/blob/master/aes.py) used to develop the inverse lookups
+
 [Supplementary material](https://github.com/JimohYusuf/Capstone_SCA) by Yusuf Jimoh Omotayo
+[LaTeX Report](https://www.overleaf.com/read/yxrgccvfvdbd) if anything, a good review of LaTeX use
 
 
