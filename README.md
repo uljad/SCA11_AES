@@ -1,4 +1,4 @@
-# SideChannelAttack
+# AES and SideChannelAttack
 
 This is the repository with the Code for the 2021-2022 Capstone Project of Uljad Berdica, Ahmad Salous and Yusuf Jimoh Omotayo. This repository features the code for the FPGA implementation of AES and the different iterations of the statistical attack design along with the data preparation scripts. 
 
